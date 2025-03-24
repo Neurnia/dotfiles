@@ -1,0 +1,9 @@
+customCommands:
+    - key: "G"
+      context: "global"
+      description: "Create GitHub remote repo (gh) and push the present branch"
+      command: "gh repo create {{.RepoName}} --public --source=. --remote=origin --push"
+      prompts:
+          - type: "input"
+            title: "Enter repo name"
+            key: "RepoName"

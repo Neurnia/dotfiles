@@ -66,3 +66,12 @@ customCommands:
             body: "Are you sure you want to commit?"
       command: "git commit --message '{{.Form.Type}}{{ if .Form.Scope }}({{ .Form.Scope }}){{ end }}{{.Form.Breaking}}: {{.Form.Message}}'"
       loadingText: "Creating conventional commit..."
+    # untrack all ignored files
+    - key: "x"
+      context: "global"
+      description: "untrack all ignored files according to .gitignore"
+      command: "git rm -r --cached . && git add ."
+      prompts:
+          - type: "confirm"
+            title: "Untrack all ignored files"
+            body: "Are you sure you want to untrack all the files ignored?"

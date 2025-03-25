@@ -1,4 +1,4 @@
--- lua/plugins/LSP.luals
+-- nvim/lua/plugins/LSP.lua
 -- plugins related to LSPs
 
 return {

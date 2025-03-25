@@ -1,4 +1,4 @@
--- lua/plugins/leetcode.lua
+-- nvim/lua/plugins/leetcode.lua
 -- leetcode.nvim
 -- LeetCoding right inside neovim
 return {

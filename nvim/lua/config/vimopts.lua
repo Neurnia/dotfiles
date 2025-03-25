@@ -1,4 +1,4 @@
--- vimopts.lua
+-- nvim/lua/config/vimopts.lua
 -- Contains basic settings for vim
 
 vim.opt.number = true

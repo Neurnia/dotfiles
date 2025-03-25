@@ -1,4 +1,4 @@
--- lua/plugins/telescope.lua
+-- nvim/lua/plugins/telescope.lua
 -- telescope.nvim
 -- an extrmely powerful fuzzy finder for neovim
 return {

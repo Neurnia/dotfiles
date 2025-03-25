@@ -1,4 +1,4 @@
--- lua/plugins/QOL.lua
+-- nvim/lua/plugins/QOF.lua
 -- plugins related to quality of life
 
 return {

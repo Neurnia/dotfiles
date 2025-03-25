@@ -1,4 +1,4 @@
--- lua/plugins/COD.luacod
+-- nvim/lua/plugins/COD.lua
 -- plugins that directly related to code(insert mode)
 
 return {

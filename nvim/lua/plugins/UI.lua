@@ -1,4 +1,4 @@
--- lua/plugins/UI.lua
+-- nvim/lua/plugins/UI.lua
 -- plugins related to UI
 
 return {

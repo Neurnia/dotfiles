@@ -124,7 +124,9 @@ return {
 			-- Define your formatters
 			formatters_by_ft = {
 				markdown = { "prettierd" },
+				-- the config filetypes
 				yaml = { "prettierd" },
+				toml = { "taplo" },
 				lua = { "stylua" },
 				-- cpp and c formatting have done by LSPs
 				-- cpp = { "clangd" },
@@ -140,8 +142,15 @@ return {
 			format_on_save = { timeout_ms = 500 },
 			-- Customize formatters
 			formatters = {
-				shfmt = {
-					prepend_args = { "-i", "2" },
+				taplo = {
+					command = "taplo",
+					-- stylua: ignore 
+					args = {
+						"format",
+						"--option", "align_entries=true",
+						"--option", "indent_string=\t",
+						"-",
+					},
 				},
 			},
 		},

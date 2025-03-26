@@ -9,9 +9,6 @@ return {
 		"williamboman/mason.nvim",
 		config = function()
 			require("mason").setup({
-				github = {
-					download_url_template = "https://ghfast.top/https://github.com/%s/releases/download/%s/%s",
-				},
 				ui = {
 					icons = {
 						package_installed = "✓",

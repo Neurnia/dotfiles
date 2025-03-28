@@ -124,10 +124,12 @@ return {
 			-- Define your formatters
 			formatters_by_ft = {
 				markdown = { "prettierd" },
+
 				-- the config filetypes
 				yaml = { "prettierd" },
 				toml = { "taplo" },
 				lua = { "stylua" },
+
 				-- cpp and c formatting have done by LSPs
 				-- cpp = { "clangd" },
 				-- c = { "clangd" },
@@ -173,5 +175,22 @@ return {
 		event = "InsertEnter",
 		config = true,
 		opts = { check_ts = true },
+	},
+	-- mini.surround
+	-- surround actions
+	{
+		"echasnovski/mini.surround",
+		version = "*",
+		opts = {
+			mappings = {
+				add = "<leader>sa", -- Add surrounding in Normal and Visual modes
+				delete = "<leader>sd", -- Delete surrounding
+				find = "<leader>sf", -- Find surrounding (to the right)
+				find_left = "<leader>sF", -- Find surrounding (to the left)
+				highlight = "<leader>sh", -- Highlight surrounding
+				replace = "<leader>sr", -- Replace surrounding
+				update_n_lines = "<leader>sn", -- Update `n_lines`
+			},
+		},
 	},
 }

@@ -6,7 +6,6 @@ return {
 	-- the one-and-only git-related plugin people must install
 	{
 		"lewis6991/gitsigns.nvim",
-		dependencies = { "folke/which-key.nvim" },
 		opts = {
 			signs_staged_enable = true,
 			signcolumn = true,
@@ -14,8 +13,6 @@ return {
 			on_attach = function()
 				-- keymaps
 				local gitsigns = require("gitsigns")
-
-				require("which-key").add({ "<leader>g", group = "git actions" })
 				vim.keymap.set("n", "<leader>gb", gitsigns.blame_line, { desc = "Git blame line" })
 				vim.keymap.set("n", "<leader>gh", gitsigns.preview_hunk_inline, { desc = "Git preview hunk" })
 			end,

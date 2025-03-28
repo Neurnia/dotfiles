@@ -28,6 +28,8 @@ return {
 
 			map.add({
 				{ "<leader>c", group = "codes" },
+				{ "<leader>g", group = "git" },
+				{ "<leader>s", group = "surrounds" },
 				{ "<leader>w", group = "window" },
 			})
 		end,
@@ -57,7 +59,7 @@ return {
 			-- 👇 in this section, choose your own keymappings!
 			{
 				"<leader>yf",
-				mode = { "n", "v" },
+				mode = "n",
 				"<cmd>Yazi<cr>",
 				desc = "Open yazi at the current file",
 			},
@@ -79,5 +81,62 @@ return {
 				show_help = "<f1>",
 			},
 		},
+	},
+	-- todo-comments.nvim
+	-- Highlight, list and search todo comments
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("todo-comments").setup({})
+
+			-- config keymaps
+			vim.keymap.set("n", "]t", function()
+				require("todo-comments").jump_next()
+			end, { desc = "Next todo comment" })
+
+			vim.keymap.set("n", "[t", function()
+				require("todo-comments").jump_prev()
+			end, { desc = "Previous todo comment" })
+		end,
+	},
+	-- markdown-preview.nvim
+	-- using browser to preview markdown files
+	{
+		"iamcco/markdown-preview.nvim",
+		pin = true,
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		ft = { "markdown" },
+		build = "cd app && npm install",
+		init = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+		end,
+		config = function()
+			-- add keymap
+			vim.keymap.set(
+				"n",
+				"<leader>cM",
+				"<cmd>MarkdownPreviewToggle<cr>",
+				{ noremap = true, desc = "Toggle markdown preview" }
+			)
+		end,
+	},
+	-- grug-far.nvim
+	-- find and replace plugin for neovim
+	{
+		"MagicDuck/grug-far.nvim",
+		dependencies = "nvim-tree/nvim-web-devicons",
+		config = function()
+			require("grug-far").setup({})
+
+			-- keymaps
+			vim.keymap.set("n", "<leader>cr", "<cmd>GrugFar<cr>", { noremap = true, desc = "Search and replace" })
+			vim.keymap.set(
+				"v",
+				"<leader>cr",
+				"<cmd>GrugFarWithIn<cr>",
+				{ noremap = true, desc = "Search and replace selected" }
+			)
+		end,
 	},
 }

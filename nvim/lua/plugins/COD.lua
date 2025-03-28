@@ -174,12 +174,4 @@ return {
 		config = true,
 		opts = { check_ts = true },
 	},
-	-- project.nvim
-	-- project management plugin
-	{
-		"ahmedkhalf/project.nvim",
-		config = function()
-			require("project_nvim").setup({})
-		end,
-	},
 }

@@ -24,10 +24,11 @@ return {
 		"folke/which-key.nvim",
 		event = "VeryLazy",
 		config = function()
-			local wk = require("which-key")
+			local map = require("which-key")
 
-			wk.add({
+			map.add({
 				{ "<leader>c", group = "codes" },
+				{ "<leader>w", group = "window" },
 			})
 		end,
 		keys = {

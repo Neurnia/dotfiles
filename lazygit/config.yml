@@ -1,5 +1,10 @@
 # lazygit/config.yml
 
+# ui settings
+gui:
+    nerdFontsVersion: "3"
+
+# custom commands
 customCommands:
     # retrieved from: https://github.com/jesseduffield/lazygit/wiki/Custom-Commands-Compendium#conventional-commit
     # conventional commit

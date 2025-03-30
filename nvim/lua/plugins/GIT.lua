@@ -15,6 +15,7 @@ return {
 				local gitsigns = require("gitsigns")
 				vim.keymap.set("n", "<leader>gb", gitsigns.blame_line, { desc = "Git blame line" })
 				vim.keymap.set("n", "<leader>gh", gitsigns.preview_hunk_inline, { desc = "Git preview hunk" })
+				vim.keymap.set("n", "<leader>gs", gitsigns.stage_hunk, { desc = "Toggle git stage hunk" })
 			end,
 		},
 	},

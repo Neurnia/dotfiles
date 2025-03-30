@@ -87,18 +87,24 @@ return {
 	{
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require("todo-comments").setup({})
-
-			-- config keymaps
-			vim.keymap.set("n", "]t", function()
-				require("todo-comments").jump_next()
-			end, { desc = "Next todo comment" })
-
-			vim.keymap.set("n", "[t", function()
-				require("todo-comments").jump_prev()
-			end, { desc = "Previous todo comment" })
-		end,
+		opts = {},
+		-- keymaps for todo-comments
+		keys = {
+			{
+				"]t",
+				function()
+					require("todo-comments").jump_next()
+				end,
+				desc = "Next todo comment",
+			},
+			{
+				"[t",
+				function()
+					require("todo-comments").jump_prev()
+				end,
+				desc = "Previous todo comment",
+			},
+		},
 	},
 	-- markdown-preview.nvim
 	-- using browser to preview markdown files
@@ -111,32 +117,36 @@ return {
 		init = function()
 			vim.g.mkdp_filetypes = { "markdown" }
 		end,
-		config = function()
-			-- add keymap
-			vim.keymap.set(
-				"n",
+		-- keymap for markdown-preview
+		keys = {
+			{
 				"<leader>cM",
 				"<cmd>MarkdownPreviewToggle<cr>",
-				{ noremap = true, desc = "Toggle markdown preview" }
-			)
-		end,
+				mode = { "n", "v" },
+				desc = "Toggle markdown preview",
+			},
+		},
 	},
 	-- grug-far.nvim
 	-- find and replace plugin for neovim
 	{
 		"MagicDuck/grug-far.nvim",
 		dependencies = "nvim-tree/nvim-web-devicons",
-		config = function()
-			require("grug-far").setup({})
-
-			-- keymaps
-			vim.keymap.set("n", "<leader>cr", "<cmd>GrugFar<cr>", { noremap = true, desc = "Search and replace" })
-			vim.keymap.set(
-				"v",
-				"<leader>cr",
+		opts = {},
+		-- keymaps for grug-far
+		keys = {
+			{
+				"<leader>cR",
+				"<cmd>GrugFar<cr>",
+				mode = "n",
+				desc = "Search and replace",
+			},
+			{
+				"<leader>cR",
 				"<cmd>GrugFarWithIn<cr>",
-				{ noremap = true, desc = "Search and replace selected" }
-			)
-		end,
+				mode = "v",
+				desc = "Search and replace selected",
+			},
+		},
 	},
 }

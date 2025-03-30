@@ -17,9 +17,11 @@ return {
 					},
 				},
 			})
-			-- set keymap for open mason ui
-			vim.keymap.set("n", "<leader>cm", ":Mason<CR>", { noremap = true, silent = true, desc = "Open Mason" })
 		end,
+		keys = {
+			-- set keymap for open mason ui
+			{ "<leader>cm", "<cmd>Mason<CR>", noremap = true, silent = true, desc = "Open Mason" },
+		},
 	},
 	-- mason-lspconfig.nvim
 	-- connect mason and lspconfig to make a smoother LSP configurating experience

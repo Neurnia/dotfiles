@@ -63,13 +63,6 @@ return {
 		"aznhe21/actions-preview.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim" },
 		config = function()
-			vim.keymap.set(
-				{ "v", "n" },
-				"<leader>ca",
-				require("actions-preview").code_actions,
-				{ desc = "show code actions" }
-			)
-
 			require("actions-preview").setup({
 				diff = {
 					algorithm = "patience",
@@ -91,6 +84,16 @@ return {
 				},
 			})
 		end,
+		keys = {
+			{
+				"<leader>ca",
+				function()
+					require("actions-preview").code_actions()
+				end,
+				mode = { "n", "v" },
+				desc = "Show code actions ",
+			},
+		},
 	},
 	-- bufferline.nvim
 	-- a bufferline for nvim

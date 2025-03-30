@@ -84,13 +84,28 @@ return {
 			-- Default list of enabled providers defined so that you can extend it
 			-- elsewhere in your config, without redefining it, due to `opts_extend`
 			sources = {
-				default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+				default = { "lazydev", "dictionary", "lsp", "path", "snippets", "buffer" },
 				providers = {
 					lazydev = {
 						name = "LazyDev",
 						module = "lazydev.integrations.blink",
 						-- make lazydev completions top priority (see `:h blink.cmp`)
 						score_offset = 100,
+					},
+					-- TODO: config dic-cmp
+					-- add dictionary files
+					dictionary = {
+						module = "blink-cmp-dictionary",
+						name = "Dict",
+						-- Make sure this is at least 2.
+						-- 3 is recommended
+						min_keyword_length = 3,
+						max_items = 10,
+						score_offset = -1,
+						opts = {
+							-- options for blink-cmp-dictionary
+							dictionary_directories = { vim.fn.expand("~/.config/nvim/dict") },
+						},
 					},
 				},
 			},

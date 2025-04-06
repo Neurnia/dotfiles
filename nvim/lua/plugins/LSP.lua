@@ -55,9 +55,14 @@ return {
 				-- ltex for the english language
 				["ltex"] = function()
 					lspconfig.ltex.setup({
+						on_attach = function()
+							require("ltex_extra").setup({
+								path = vim.fn.stdpath("config") .. "/dict",
+							})
+						end,
 						settings = {
 							ltex = {
-								language = "en",
+								language = "en-US",
 							},
 						},
 					})
@@ -83,7 +88,11 @@ return {
 	-- enables detailed configuration for LSPs
 	{
 		"neovim/nvim-lspconfig",
-		dependencies = { "williamboman/mason-lspconfig.nvim" },
+		dependencies = {
+			"williamboman/mason-lspconfig.nvim",
+			-- compensate for the shortcomings of ltex in Neovim
+			"barreiroleo/ltex_extra.nvim",
+		},
 		config = function()
 			-- NOTE: config some nvim's builtin LSP-related things here
 			vim.diagnostic.config({

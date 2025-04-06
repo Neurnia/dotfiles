@@ -149,4 +149,27 @@ return {
 			},
 		},
 	},
+	-- render-markdown.nvim
+	-- better markdown display
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
+		---@module 'render-markdown'
+		---@type render.md.UserConfig
+		opts = {
+			completions = { blink = { enabled = true } },
+			latex = { enabled = false },
+		},
+	},
+	-- detailed config for markdown
+	{
+		"plasticboy/vim-markdown",
+		branch = "master",
+		dependencies = { "godlygeek/tabular" },
+		config = function()
+			vim.g.tex_conceal = ""
+			vim.g.vim_markdown_math = 1
+			vim.g.vim_markdown_conceal_code_blocks = 0
+		end,
+	},
 }

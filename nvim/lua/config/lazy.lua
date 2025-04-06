@@ -30,6 +30,7 @@ vim.opt.expandtab = false
 vim.opt.shiftwidth = 4
 vim.opt.smartindent = true
 vim.opt.termguicolors = true
+vim.opt.foldenable = false
 
 -- better window motions
 local map = vim.keymap.set

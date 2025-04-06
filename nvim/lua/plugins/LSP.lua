@@ -52,22 +52,27 @@ return {
 					})
 				end,
 
-				-- clangd for cpp
-				-- set fallback-style for single files
-				require("lspconfig").clangd.setup({
-					cmd = {
-						"clangd",
-						"--fallback-style=LLVM",
-					},
-				}),
+				-- ltex for the english language
+				["ltex"] = function()
+					lspconfig.ltex.setup({
+						settings = {
+							ltex = {
+								language = "en",
+							},
+						},
+					})
+				end,
 
 				-- add new configs for new servers here
 			}
 			-- setup the plugin
 			require("mason-lspconfig").setup({
 				ensure_installed = {
+					-- NOTE: add new LSPs here
 					"lua_ls",
 					"clangd",
+					"texlab",
+					"ltex",
 				},
 				automatic_installation = true,
 				handlers = handlers,
@@ -107,8 +112,19 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		config = function()
-			local parsers =
-				{ "c", "cpp", "lua", "python", "markdown", "html", "vim", "regex", "bash", "markdown_inline" }
+			local parsers = {
+				"c",
+				"cpp",
+				"lua",
+				"python",
+				"markdown",
+				"markdown_inline",
+				"latex",
+				"html",
+				"vim",
+				"regex",
+				"bash",
+			}
 
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = parsers,

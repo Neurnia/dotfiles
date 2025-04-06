@@ -85,13 +85,20 @@ return {
 		"neovim/nvim-lspconfig",
 		dependencies = { "williamboman/mason-lspconfig.nvim" },
 		config = function()
-			-- lsp keymap
-			vim.keymap.set("n", "gd", ":lua vim.lsp.buf.definition()<CR>", {
-				noremap = true,
-				silent = true,
-				desc = "definition",
+			-- NOTE: config some nvim's builtin LSP-related things here
+			vim.diagnostic.config({
+				virtual_lines = { current_line = true },
 			})
 		end,
+		-- lsp keymaps
+		keys = {
+			{ "gd", vim.lsp.buf.definition, desc = "Go to Definition" },
+			{ "gD", vim.lsp.buf.declaration, desc = "Go to Declaration" },
+			-- { "gi", vim.lsp.buf.implementation, desc = "Go to Implementation" },
+			-- { "gr", vim.lsp.buf.references, desc = "Show References" },
+			{ "K", vim.lsp.buf.hover, desc = "Hover Documentation" },
+			{ "<leader>cr", vim.lsp.buf.rename, desc = "Rename Symbol" },
+		},
 	},
 	-- lazydev.nvim
 	-- add VIMRUNTIME library and other 3rd party libraries to lua_ls

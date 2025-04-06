@@ -4,10 +4,26 @@
 return {
 	-- blink.cmp
 	-- auto completion
+	-- TODO: add fzf and lsp capability to blink
 	{
 		"saghen/blink.cmp",
 		-- optional: provides snippets for the snippet source
-		dependencies = "rafamadriz/friendly-snippets",
+		dependencies = {
+			-- enable integrability with nvim-cmp sources
+			{ "saghen/blink.compat", version = "*" },
+			-- TODO: config LuaSnip
+			-- add a new config of LuaSnip elsewhere
+			{ "L3MON4D3/LuaSnip", version = "v2.*" },
+			-- dictionary
+			{
+				"Kaiser-Yang/blink-cmp-dictionary",
+				dependencies = "nvim-lua/plenary.nvim",
+			},
+			-- emoji
+			{ "moyiz/blink-emoji.nvim" },
+			-- latex symbols
+			{ "kdheepak/cmp-latex-symbols" },
+		},
 
 		-- use a release tag to download pre-built binaries
 		version = "*",
@@ -83,28 +99,58 @@ return {
 			},
 			-- Default list of enabled providers defined so that you can extend it
 			-- elsewhere in your config, without redefining it, due to `opts_extend`
+			snippets = { preset = "luasnip" },
 			sources = {
-				default = { "lazydev", "dictionary", "lsp", "path", "snippets", "buffer" },
+				-- dynamic sources
+				default = function()
+					if vim.bo.filetype == "markdown" then
+						return { "latex_symbols", "emoji", "dictionary", "path", "snippets", "buffer" }
+					else
+						return { "lazydev", "dictionary", "emoji", "lsp", "path", "snippets", "buffer" }
+					end
+				end,
 				providers = {
+					-- lazydev
 					lazydev = {
 						name = "LazyDev",
 						module = "lazydev.integrations.blink",
 						-- make lazydev completions top priority (see `:h blink.cmp`)
 						score_offset = 100,
 					},
-					-- TODO: config dic-cmp
-					-- add dictionary files
 					dictionary = {
 						module = "blink-cmp-dictionary",
 						name = "Dict",
 						-- Make sure this is at least 2.
 						-- 3 is recommended
-						min_keyword_length = 3,
-						max_items = 10,
-						score_offset = -1,
+						min_keyword_length = 4,
+						max_items = 8,
+						score_offset = -10,
 						opts = {
 							-- options for blink-cmp-dictionary
 							dictionary_directories = { vim.fn.expand("~/.config/nvim/dict") },
+						},
+					},
+					-- emoji
+					emoji = {
+						module = "blink-emoji",
+						name = "Emoji",
+						score_offset = 15, -- Tune by preference
+						opts = { insert = true }, -- Insert emoji (default) or complete its name
+						should_show_items = function()
+							return vim.tbl_contains(
+								-- Enable emoji completion only for git commits and markdown.
+								-- By default, enabled for all file-types.
+								{ "gitcommit", "markdown" },
+								vim.o.filetype
+							)
+						end,
+					},
+					-- latex symbols
+					latex_symbols = {
+						name = "latex_symbols",
+						module = "blink.compat.source",
+						opts = {
+							strategy = 2,
 						},
 					},
 				},

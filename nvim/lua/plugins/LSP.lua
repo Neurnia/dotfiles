@@ -27,7 +27,10 @@ return {
 	-- connect mason and lspconfig to make a smoother LSP configurating experience
 	{
 		"mason-org/mason-lspconfig.nvim",
-		dependencies = { "williamboman/mason.nvim" },
+		dependencies = {
+			"williamboman/mason.nvim",
+			"neovim/nvim-lspconfig",
+		},
 		opts = {
 			ensure_installed = {
 				-- NOTE: add new LSPs here
@@ -45,7 +48,6 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			"mason-org/mason-lspconfig.nvim",
 			-- compensate for the shortcomings of ltex in Neovim
 			"barreiroleo/ltex_extra.nvim",
 		},

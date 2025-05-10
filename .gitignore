@@ -2,3 +2,4 @@
 
 # /nvim
 *.json
+nvim/ltex/ltex.hiddenFalsePositives.en-US.txt

@@ -12,6 +12,9 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 	},
 	opts = {
-		-- configuration goes here
+		storage = {
+			home = "~/leetcode",
+			cache = "~/leetcode/cache",
+		},
 	},
 }

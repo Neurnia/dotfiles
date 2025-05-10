@@ -57,7 +57,7 @@ return {
 					lspconfig.ltex.setup({
 						on_attach = function()
 							require("ltex_extra").setup({
-								path = vim.fn.stdpath("config") .. "/dict",
+								path = vim.fn.stdpath("config") .. "/ltex",
 							})
 						end,
 						settings = {

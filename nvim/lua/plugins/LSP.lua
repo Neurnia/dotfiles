@@ -6,7 +6,7 @@ return {
 	-- auto management of LSPs
 	-- need to be loaded first in LSP-related plugins
 	{
-		"williamboman/mason.nvim",
+		"mason-org/mason.nvim",
 		config = function()
 			require("mason").setup({
 				ui = {
@@ -26,70 +26,26 @@ return {
 	-- mason-lspconfig.nvim
 	-- connect mason and lspconfig to make a smoother LSP configurating experience
 	{
-		"williamboman/mason-lspconfig.nvim",
+		"mason-org/mason-lspconfig.nvim",
 		dependencies = { "williamboman/mason.nvim" },
-		config = function()
-			local lspconfig = require("lspconfig")
-			-- define the handlers
-			local handlers = {
-				-- default handler for servers without a dedicated handler
-				function(server_name)
-					lspconfig[server_name].setup({})
-				end,
-
-				-- lua_ls for lua
-				-- no need to config anything else thanks to lazydev.nvim!!!
-				["lua_ls"] = function()
-					lspconfig.lua_ls.setup({
-						settings = {
-							Lua = {
-								diagnostics = {
-									-- but i have to disable this annoying diagnostics!!
-									disable = { "missing-fields" },
-								},
-							},
-						},
-					})
-				end,
-
-				-- ltex for the english language
-				["ltex"] = function()
-					lspconfig.ltex.setup({
-						on_attach = function()
-							require("ltex_extra").setup({
-								path = vim.fn.stdpath("config") .. "/ltex",
-							})
-						end,
-						settings = {
-							ltex = {
-								language = "en-US",
-							},
-						},
-					})
-				end,
-
-				-- add new configs for new servers here
-			}
-			-- setup the plugin
-			require("mason-lspconfig").setup({
-				ensure_installed = {
-					-- NOTE: add new LSPs here
-					"lua_ls",
-					"clangd",
-					"texlab",
-					"ltex",
-				},
-				automatic_installation = true,
-				handlers = handlers,
-			})
-		end,
+		opts = {
+			ensure_installed = {
+				-- NOTE: add new LSPs here
+				-- the plugin now automatically setup LSPs with nvim-lspconfig default settings
+				"lua_ls",
+				"clangd",
+				"texlab",
+				"ltex",
+			},
+			automatic_enable = true,
+		},
 	},
 	-- nvim-lspconfig
 	-- enables detailed configuration for LSPs
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			"williamboman/mason-lspconfig.nvim",
+			"mason-org/mason-lspconfig.nvim",
 			-- compensate for the shortcomings of ltex in Neovim
 			"barreiroleo/ltex_extra.nvim",
 		},
@@ -98,7 +54,38 @@ return {
 			vim.diagnostic.config({
 				virtual_lines = { current_line = true },
 			})
+
+			-- NOTE: special settings for LSPs
+
+			-- lua_ls for lua
+			-- Thanks to lazydev.nvim, now we only need to set up this minor setting!!
+			vim.lsp.config("lua_ls", {
+				settings = {
+					Lua = {
+						diagnostics = {
+							disable = { "missing-fields" },
+						},
+					},
+				},
+			})
+
+			-- ltex for the english language
+			vim.lsp.config("ltex", {
+				on_attach = function()
+					require("ltex_extra").setup({
+						path = vim.fn.stdpath("config") .. "/ltex",
+					})
+				end,
+				settings = {
+					ltex = {
+						language = "en-US",
+					},
+				},
+			})
+
+			-- NOTE: set up other LSPs here
 		end,
+
 		-- lsp keymaps
 		keys = {
 			{ "gd", vim.lsp.buf.definition, desc = "Go to Definition" },

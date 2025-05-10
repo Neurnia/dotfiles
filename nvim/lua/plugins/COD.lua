@@ -4,7 +4,7 @@
 return {
 	-- blink.cmp
 	-- auto completion
-	-- TODO: add fzf and lsp capability to blink
+	-- TODO: add fzf to blink
 	{
 		"saghen/blink.cmp",
 		-- optional: provides snippets for the snippet source

@@ -39,6 +39,7 @@ return {
 				"clangd",
 				"texlab",
 				"ltex",
+				"qmlls", -- for quickshell
 			},
 			automatic_enable = true,
 		},
@@ -129,6 +130,7 @@ return {
 				"vim",
 				"regex",
 				"bash",
+				"qmljs", -- for quickshell
 			}
 
 			require("nvim-treesitter.configs").setup({

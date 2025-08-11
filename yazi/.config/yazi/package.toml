@@ -1,0 +1,14 @@
+[[plugin.deps]]
+use  = "Lil-Dank/lazygit"
+rev  = "9f924e3"
+hash = "2b0c33928986f126d5c5a4cac31a6b46"
+
+[[flavor.deps]]
+use  = "BennyOe/tokyo-night"
+rev  = "695dac6"
+hash = "a8f426ea0d9cb843b081d62ab01364c8"
+
+[[flavor.deps]]
+use  = "yazi-rs/flavors:catppuccin-macchiato"
+rev  = "68326b4"
+hash = "3ec21bcfd2735cfcbab61faaf43e59e4"

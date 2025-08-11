@@ -1,5 +1,5 @@
 # .gitignore
 
 # /nvim
-*.json
-nvim/ltex/ltex.hiddenFalsePositives.en-US.txt
+nvim/*.json
+nvim/.config/nvim/ltex/ltex.hiddenFalsePositives.en-US.txt

@@ -6,4 +6,5 @@ nvim/.config/nvim/ltex/ltex.hiddenFalsePositives.en-US.txt
 
 # /yazi
 yazi/.config/yazi/flavors/*
+yazi/.config/yazi/plugins/*
 

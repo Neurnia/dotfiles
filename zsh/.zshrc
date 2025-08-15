@@ -1,7 +1,9 @@
 # zsh configuration
 
+# keep these lines at the beginning
+# WSL specific network settings
+source ~/.config/zsh/wsl.zsh
 # zim initialization
-# keep this line at the beginning
 source ~/.config/zsh/zim.zsh
 
 # --------------
@@ -20,6 +22,9 @@ WORDCHARS=${WORDCHARS//[\/]}
 source ~/.config/zsh/vi.zsh
 # environmental variables
 source ~/.config/zsh/env.zsh
+# handy aliases
+source ~/.config/zsh/aliases.zsh
+
 
 
 # -----------------------------

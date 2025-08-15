@@ -1,7 +1,7 @@
 # .gitignore
 
 # /nvim
-nvim/*.json
+nvim/.config/nvim/*.json
 nvim/.config/nvim/ltex/ltex.hiddenFalsePositives.en-US.txt
 
 # /yazi

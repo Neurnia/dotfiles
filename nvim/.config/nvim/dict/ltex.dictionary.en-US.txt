@@ -1,1 +1,0 @@
-/home/leimengan/dotfiles/nvim/ltex/ltex.dictionary.en-US.txt

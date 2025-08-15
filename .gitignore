@@ -8,3 +8,6 @@ nvim/.config/nvim/ltex/ltex.hiddenFalsePositives.en-US.txt
 yazi/.config/yazi/flavors/*
 yazi/.config/yazi/plugins/*
 
+# /quickshell
+quickshell/.config/quickshell/.qmlls.ini
+

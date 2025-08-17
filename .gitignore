@@ -11,3 +11,5 @@ yazi/.config/yazi/plugins/*
 # /quickshell
 quickshell/.config/quickshell/.qmlls.ini
 
+# /kitty
+kitty/.config/kitty/*.bak
